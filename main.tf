@@ -1,15 +1,15 @@
-provider "aws" {
-    region = "us-west-2"
-}
+# provider "aws" {
+#     region = "us-west-2"
+# }
 
-resource "aws_instance" "example" {
-    ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 AMI
-    instance_type = "t2.micro"
+# resource "aws_instance" "example" {
+#     ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 AMI
+#     instance_type = "t2.micro"
 
-    tags = {
-        Name = "example-instance"
-    }
-}
+#     tags = {
+#         Name = "example-instance"
+#     }
+# }
 
 # module "eks" {
 #     source          = "terraform-aws-modules/eks/aws"
