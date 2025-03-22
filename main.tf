@@ -1,30 +1,26 @@
-# provider "aws" {
-#     region = "us-west-2"
-# }
+# Define a null resource
+resource "null_resource" "example" {
+  # This triggers the resource to be recreated when the value changes
+  triggers = {
+    # You can use any value here, like a timestamp for always running
+    always_run = "${timestamp()}"
+    # Or depend on other resource attributes
+    # config_version = var.config_version
+  }
 
-# resource "aws_instance" "example" {
-#     ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 AMI
-#     instance_type = "t2.micro"
+  # Optional: Add provisioners if needed
+  provisioner "local-exec" {
+    command = "echo 'Null resource executed at: $(date)'"
+  }
+}
 
-#     tags = {
-#         Name = "example-instance"
-#     }
-# }
+# Define outputs related to the null resource
+output "null_resource_id" {
+  description = "The ID of the null resource"
+  value       = null_resource.example.id
+}
 
-# module "eks" {
-#     source          = "terraform-aws-modules/eks/aws"
-#     cluster_name    = "example-cluster"
-#     cluster_version = "1.21"
-#     subnets         = ["subnet-0123456789abcdef0", "subnet-0123456789abcdef1"]
-#     vpc_id          = "vpc-0123456789abcdef0"
-
-#     node_groups = {
-#         example = {
-#             desired_capacity = 1
-#             max_capacity     = 2
-#             min_capacity     = 1
-
-#             instance_type = "t2.micro"
-#         }
-#     }
-# }
+output "null_resource_triggered_by" {
+  description = "The value that triggered the null resource"
+  value       = null_resource.example.triggers
+}
