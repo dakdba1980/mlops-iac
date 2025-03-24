@@ -1,8 +1,12 @@
 name: aws cli in github actions
 
-on:
-  workflow_dispatch:
+# on:
+#   workflow_dispatch:
 
+on:
+  push:
+    branches:
+      - main
 jobs:
   aws-cli-in-github-actions:
     runs-on: ubuntu-latest
