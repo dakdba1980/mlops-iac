@@ -22,11 +22,11 @@ jobs:
       - run: |
           ls -lrth
           pwd
-          chmod 777 /home/runner/work/bash-script/bash-script/README.md
-          ls -lrth /home/runner/work/bash-script/bash-script
+          chmod 777 /home/runner/work/mlops-iac/mlops-iac/README.md
+          ls -lrth /home/runner/work/mlops-iac/mlops-iac
           aws --version
           pwd
-          aws s3 cp /home/runner/work/bash-script/bash-script/README.md s3://dakbucket1980 --region us-east-1 --cache-control max-age=0
+          aws s3 cp /home/runner/work/mlops-iac/mlops-iac/README.md s3://dakbucket1980 --region us-east-1 --cache-control max-age=0
           aws s3 ls
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
