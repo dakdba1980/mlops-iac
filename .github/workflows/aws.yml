@@ -1,0 +1,28 @@
+name: aws cli in github actions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  aws-cli-in-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install awscli
+      - run: |
+          ls -lrth
+          chmod 777 /home/runner/work/bash-script/bash-script/README.md
+          ls -lrth /home/runner/work/bash-script/bash-script
+          aws --version
+          pwd
+          aws s3 cp /home/runner/work/bash-script/bash-script/README.md s3://dakbucket1980 --region us-east-1 --cache-control max-age=0
+          aws s3 ls
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
